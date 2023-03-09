@@ -1,22 +1,22 @@
-module Problem1 exposing (last, main)
+module Problem2 exposing (penultimate)
 
 import Html exposing (Html)
 import List
 import Maybe exposing (Maybe)
 
 
-last : List a -> Maybe a
-last lst =
-    case lst of
+penultimate : List a -> Maybe a
+penultimate list =
+    case list of
+        [] ->
+            Nothing
+
         x :: xs ->
-            if List.isEmpty xs then
+            if List.length xs == 1 then
                 Just x
 
             else
-                last xs
-
-        [] ->
-            Nothing
+                penultimate xs
 
 
 main : Html a
@@ -37,8 +37,10 @@ test : Int
 test =
     List.length <|
         List.filter ((==) False)
-            [ last [ 1, 2, 3, 4 ] == Just 4
-            , last [ 1 ] == Just 1
-            , last [] == Nothing
-            , last [ 'a', 'b', 'c' ] == Just 'c'
+            [ penultimate [ 1, 2, 3, 4 ] == Just 3
+            , penultimate [ 1, 2 ] == Just 1
+            , penultimate [ 1 ] == Nothing
+            , penultimate [] == Nothing
+            , penultimate [ "a", "b", "c" ] == Just "b"
+            , penultimate [ "a" ] == Nothing
             ]

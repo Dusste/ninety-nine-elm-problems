@@ -2,7 +2,9 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (Html)
+import Html.Attributes exposing (href)
 import Problem1
+import Problem2
 
 
 main : Program () Model Msg
@@ -41,19 +43,12 @@ view _ =
         ]
 
 
-
--- main : Html msg
--- main =
---     Problem1.problem1
---         |> Debug.toString
---         |> Html.text
-
-
 mainHeading : Html msg
 mainHeading =
     Html.div []
         [ Html.h1 []
-            [ Html.text "99 Problems solved in ELM by Dusan Stevanovic"
+            [ Html.a [ href "https://johncrane.gitbooks.io/ninety-nine-elm-problems/content/" ] [ Html.text "99 Problems solved in ELM " ]
+            , Html.text "by Dusan Stevanovic"
             ]
         ]
 
@@ -70,15 +65,30 @@ infoSection =
 problem1Wrapper : Html msg
 problem1Wrapper =
     Html.div []
-        [ Html.h2 [] [ Html.text "Problem 1" ]
-        , Html.div []
-            [ Html.p [] [ Html.text "Write a function last that returns the last element of a list. An empty list doesn't have a last element, therefore last must return a Maybe." ]
-            , Problem1.mainHtml
+        [ Html.div []
+            [ Html.h2 [] [ Html.text "Problem 1" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Write a function last that returns the last element of a list. An empty list doesn't have a last element, therefore last must return a Maybe." ]
+                , Problem1.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]" ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString (Problem1.last [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]))
+                ]
             ]
         , Html.div []
-            [ Html.p [] [ Html.text "Input:" ]
-            , Html.p [] [ Html.text "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]" ]
-            , Html.p [] [ Html.text "Solution:" ]
-            , Html.text (Debug.toString (Problem1.last [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]))
+            [ Html.h2 [] [ Html.text "Problem 2" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Implement the function penultimate to find the next to last element of a list." ]
+                , Problem1.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]" ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString (Problem2.penultimate [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]))
+                ]
             ]
         ]
