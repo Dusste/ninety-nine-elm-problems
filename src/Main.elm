@@ -100,9 +100,9 @@ problem1Wrapper =
                 ]
             , Html.div []
                 [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "[ 1001, 44, 3, 789, 54, 33 ]" ]
+                , Html.p [] [ Html.text "[ 1001, 44, 3, 789, 54, 33 ] find second(2) element in a list" ]
                 , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString (Problem3.elementAt [ 1001, 44, 3, 789, 54, 33 ] 5))
+                , Html.text (Debug.toString (Problem3.elementAt [ 1001, 44, 3, 789, 54, 33 ] 2))
                 ]
             ]
         ]
