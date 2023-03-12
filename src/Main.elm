@@ -8,6 +8,7 @@ import Problem2
 import Problem3
 import Problem4
 import Problem5
+import Problem6
 
 
 main : Program () Model Msg
@@ -131,6 +132,19 @@ problem1Wrapper =
                 , Html.p [] [ Html.text "[ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ]" ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString (Problem5.myReverse [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ]))
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 6" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Determine if a list is a palindrome, that is, the list is identical when read forward or backward." ]
+                , Problem6.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text "[ 1, 3, 5, 8, 5, 3, 1 ]" ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString (Problem6.isPalindrome [ 1, 3, 5, 8, 5, 3, 1 ]))
                 ]
             ]
         ]
