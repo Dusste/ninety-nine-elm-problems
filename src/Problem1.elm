@@ -1,6 +1,7 @@
 module Problem1 exposing (last, main)
 
-import Html exposing (Html)
+import Html exposing (Html, text)
+import Html.Attributes exposing (style)
 import List
 import Maybe exposing (Maybe)
 
@@ -21,16 +22,15 @@ last lst =
 
 main : Html a
 main =
-    Html.text <|
-        case test of
-            0 ->
-                "Your implementation passed all tests."
+    case test of
+        0 ->
+            Html.p [ style "color" "green" ] [ text "Your implementation passed all tests." ]
 
-            1 ->
-                "Your implementation failed one test."
+        1 ->
+            Html.p [ style "color" "red" ] [ text "Your implementation failed one test." ]
 
-            x ->
-                "Your implementation failed " ++ Debug.toString x ++ " tests."
+        x ->
+            Html.p [ style "color" "red" ] [ text <| "Your implementation failed " ++ Debug.toString x ++ " tests." ]
 
 
 test : Int

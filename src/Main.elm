@@ -7,6 +7,7 @@ import Problem1
 import Problem2
 import Problem3
 import Problem4
+import Problem5
 
 
 main : Program () Model Msg
@@ -84,7 +85,7 @@ problem1Wrapper =
             [ Html.h2 [] [ Html.text "Problem 2" ]
             , Html.div []
                 [ Html.p [] [ Html.text "Implement the function penultimate to find the next to last element of a list." ]
-                , Problem1.main
+                , Problem2.main
                 ]
             , Html.div []
                 [ Html.p [] [ Html.text "Input:" ]
@@ -97,7 +98,7 @@ problem1Wrapper =
             [ Html.h2 [] [ Html.text "Problem 3" ]
             , Html.div []
                 [ Html.p [] [ Html.text "Implement the function elementAt to return the n-th element of a list. The index is 1-relative, that is, the first element is at index 1." ]
-                , Problem1.main
+                , Problem3.main
                 ]
             , Html.div []
                 [ Html.p [] [ Html.text "Input:" ]
@@ -110,13 +111,26 @@ problem1Wrapper =
             [ Html.h2 [] [ Html.text "Problem 4" ]
             , Html.div []
                 [ Html.p [] [ Html.text "Elm provides the function List.length. See if you can implement it yourself." ]
-                , Problem1.main
+                , Problem4.main
                 ]
             , Html.div []
                 [ Html.p [] [ Html.text "Input:" ]
                 , Html.p [] [ Html.text "[1, 2, 3, 4, 3, 2, 1]" ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString (Problem4.countElements [ 1, 2, 3, 4, 3, 2, 1 ]))
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 5" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Elm provides the function List.reverse to reverse the order of elements in a list. See if you can implement it." ]
+                , Problem5.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text "[ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ]" ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString (Problem5.myReverse [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ]))
                 ]
             ]
         ]
