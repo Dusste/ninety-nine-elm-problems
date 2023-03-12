@@ -6,6 +6,7 @@ import Html.Attributes exposing (href)
 import Problem1
 import Problem2
 import Problem3
+import Problem4
 
 
 main : Program () Model Msg
@@ -103,6 +104,19 @@ problem1Wrapper =
                 , Html.p [] [ Html.text "[ 1001, 44, 3, 789, 54, 33 ] find second(2) element in a list" ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString (Problem3.elementAt [ 1001, 44, 3, 789, 54, 33 ] 2))
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 4" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Elm provides the function List.length. See if you can implement it yourself." ]
+                , Problem1.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text "[1, 2, 3, 4, 3, 2, 1]" ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString (Problem4.countElements [ 1, 2, 3, 4, 3, 2, 1 ]))
                 ]
             ]
         ]
