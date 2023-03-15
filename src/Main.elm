@@ -9,6 +9,7 @@ import Problem3
 import Problem4
 import Problem5
 import Problem6
+import Problem7
 
 
 main : Program () Model Msg
@@ -145,6 +146,19 @@ problem1Wrapper =
                 , Html.p [] [ Html.text "[ 1, 3, 5, 8, 5, 3, 1 ]" ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString (Problem6.isPalindrome [ 1, 3, 5, 8, 5, 3, 1 ]))
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 7" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Flatten a nested lists into a single list. Because Lists in Elm are homogeneous we need to define what a nested list is." ]
+                , Problem7.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString Problem7.nl2 ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| Problem7.flatten Problem7.nl2)
                 ]
             ]
         ]
