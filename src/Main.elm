@@ -10,6 +10,7 @@ import Problem4
 import Problem5
 import Problem6
 import Problem7
+import Problem8
 import ProblemExtra1
 import ProblemExtra2
 
@@ -187,6 +188,19 @@ problem1Wrapper =
                 , Html.p [] [ Html.text <| Debug.toString (List.range 1 10) ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString <| ProblemExtra2.takeWhile ((>) 5) (List.range 1 10))
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 8" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Write a function to remove consecutive duplicates of list elements." ]
+                , Problem8.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString [ 3, 3, 4, 3, 4, 4 ] ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| Problem8.noDupes [ 3, 3, 4, 3, 4, 4 ])
                 ]
             ]
         ]
