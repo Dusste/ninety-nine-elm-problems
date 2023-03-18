@@ -10,6 +10,8 @@ import Problem4
 import Problem5
 import Problem6
 import Problem7
+import ProblemExtra1
+import ProblemExtra2
 
 
 main : Program () Model Msg
@@ -159,6 +161,32 @@ problem1Wrapper =
                 , Html.p [] [ Html.text <| Debug.toString Problem7.nl2 ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString <| Problem7.flatten Problem7.nl2)
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Extra 1" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Drop items from the start of a list until an item does not satisfy criteria specified by a function." ]
+                , ProblemExtra1.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString (List.range 1 10) ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| ProblemExtra1.dropWhile ((>) 5) (List.range 1 10))
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Extra 2" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Keep elements from the start of a list while they satisfy a condition." ]
+                , ProblemExtra2.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString (List.range 1 10) ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| ProblemExtra2.takeWhile ((>) 5) (List.range 1 10))
                 ]
             ]
         ]

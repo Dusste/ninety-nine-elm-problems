@@ -1,6 +1,5 @@
 module Problem7 exposing (flatten, main, nl1, nl2)
 
-import Browser.Dom exposing (Element)
 import Html exposing (Html, text)
 import Html.Attributes exposing (style)
 import List
