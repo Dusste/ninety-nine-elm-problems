@@ -11,6 +11,7 @@ import Problem5
 import Problem6
 import Problem7
 import Problem8
+import Problem9
 import ProblemExtra1
 import ProblemExtra2
 
@@ -201,6 +202,19 @@ problem1Wrapper =
                 , Html.p [] [ Html.text <| Debug.toString [ 3, 3, 4, 3, 4, 4 ] ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString <| Problem8.noDupes [ 3, 3, 4, 3, 4, 4 ])
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 9" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Convert a list to a list of lists where repeated elements of the source list are packed into sublists. Elements that are not repeated should be placed in a one element sublist." ]
+                , Problem9.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ] ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| Problem9.pack [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ])
                 ]
             ]
         ]

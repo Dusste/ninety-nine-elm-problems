@@ -26,6 +26,7 @@ isPalindrome lst =
         halfListLength =
             List.length lst // 2
     in
+    -- half of list length should be exactly equal to length of listOfDubleOccasions
     lst
         |> listOfDubleOccasions
         |> List.concat
