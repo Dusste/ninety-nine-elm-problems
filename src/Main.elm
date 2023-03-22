@@ -4,6 +4,7 @@ import Browser
 import Html exposing (Html)
 import Html.Attributes exposing (href)
 import Problem1
+import Problem10
 import Problem2
 import Problem3
 import Problem4
@@ -215,6 +216,39 @@ problem1Wrapper =
                 , Html.p [] [ Html.text <| Debug.toString [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ] ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString <| Problem9.pack [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ])
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 10" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Run-length encode a list of list to a list of tuples. Unlike lists, tuples can mix types. Use tuples (n, e) to encode a list where n is the number of duplicates of the element e." ]
+                , Problem10.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p []
+                    [ Html.text <|
+                        Debug.toString
+                            [ [ 'a', 'a', 'a' ]
+                            , [ 'b' ]
+                            , [ 'c', 'c', 'c' ]
+                            , [ 'd', 'd', 'd', 'd' ]
+                            , [ 'e' ]
+                            , [ 'f', 'f' ]
+                            ]
+                    ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text
+                    (Debug.toString <|
+                        Problem10.runLengths
+                            [ [ 'a', 'a', 'a' ]
+                            , [ 'b' ]
+                            , [ 'c', 'c', 'c' ]
+                            , [ 'd', 'd', 'd', 'd' ]
+                            , [ 'e' ]
+                            , [ 'f', 'f' ]
+                            ]
+                    )
                 ]
             ]
         ]
