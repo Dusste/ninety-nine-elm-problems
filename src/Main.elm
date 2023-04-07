@@ -5,6 +5,7 @@ import Html exposing (Html)
 import Html.Attributes exposing (href)
 import Problem1
 import Problem10
+import Problem11
 import Problem2
 import Problem3
 import Problem4
@@ -249,6 +250,19 @@ problem1Wrapper =
                             , [ 'f', 'f' ]
                             ]
                     )
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 11" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Write a function to run length encode a list, but instead of using a tuple as in problem 10, use a union data type" ]
+                , Problem11.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ] ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| Problem11.rleEncode [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ])
                 ]
             ]
         ]

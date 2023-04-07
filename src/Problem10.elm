@@ -1,6 +1,5 @@
 module Problem10 exposing (main, runLengths)
 
-import Array exposing (Array)
 import Html exposing (Html, text)
 import Html.Attributes exposing (style)
 import List
