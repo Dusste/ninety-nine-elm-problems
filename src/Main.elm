@@ -6,6 +6,8 @@ import Html.Attributes exposing (href)
 import Problem1
 import Problem10
 import Problem11
+import Problem12
+import Problem14
 import Problem2
 import Problem3
 import Problem4
@@ -263,6 +265,32 @@ problem1Wrapper =
                 , Html.p [] [ Html.text <| Debug.toString [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ] ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString <| Problem11.rleEncode [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ])
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 12" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Decompress the run-length encoded list generated in Problem 11." ]
+                , Problem12.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString [ Problem12.Run 4 1, Problem12.Single 2, Problem12.Run 2 5, Problem12.Single 2, Problem12.Single 1 ] ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| Problem12.rleDecode [ Problem12.Run 4 1, Problem12.Single 2, Problem12.Run 2 5, Problem12.Single 2, Problem12.Single 1 ])
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 14" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Decompress the run-length encoded list generated in Problem 11." ]
+                , Problem14.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text <| Debug.toString [ 1, 2, 3, 5, 8, 8 ] ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| Problem14.duplicate [ 1, 2, 3, 5, 8, 8 ])
                 ]
             ]
         ]
