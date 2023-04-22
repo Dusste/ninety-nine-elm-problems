@@ -284,7 +284,7 @@ problem1Wrapper =
         , Html.div []
             [ Html.h2 [] [ Html.text "Problem 14" ]
             , Html.div []
-                [ Html.p [] [ Html.text "Decompress the run-length encoded list generated in Problem 11." ]
+                [ Html.p [] [ Html.text "Duplicate each element of a list." ]
                 , Problem14.main
                 ]
             , Html.div []
