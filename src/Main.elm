@@ -10,6 +10,7 @@ import Problem12
 import Problem14
 import Problem15
 import Problem2
+import Problem20
 import Problem3
 import Problem4
 import Problem5
@@ -305,6 +306,19 @@ problem1Wrapper =
                 , Html.p [] [ Html.text "3 [ 1, 2, 3, 3 ]" ]
                 , Html.p [] [ Html.text "Solution:" ]
                 , Html.text (Debug.toString <| Problem15.repeatElements 3 [ 1, 2, 3, 3 ])
+                ]
+            ]
+        , Html.div []
+            [ Html.h2 [] [ Html.text "Problem 20" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Remove the nth element from a list." ]
+                , Problem20.main
+                ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Input:" ]
+                , Html.p [] [ Html.text "3 (List.range 1 10)" ]
+                , Html.p [] [ Html.text "Solution:" ]
+                , Html.text (Debug.toString <| Problem20.dropAt 3 (List.range 1 10))
                 ]
             ]
         ]
