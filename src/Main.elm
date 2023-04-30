@@ -10,6 +10,7 @@ import Problem12
 import Problem14
 import Problem15
 import Problem16
+import Problem17
 import Problem2
 import Problem20
 import Problem3
@@ -78,261 +79,164 @@ infoSection =
         ]
 
 
+type alias ProblemConfig a =
+    { headline : String, description : String, textInput : String, solutionInString : String, main : Html a }
+
+
 problem1Wrapper : Html msg
 problem1Wrapper =
     Html.div []
-        [ Html.div []
-            [ Html.h2 [] [ Html.text "Problem 1" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Write a function last that returns the last element of a list. An empty list doesn't have a last element, therefore last must return a Maybe." ]
-                , Problem1.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString (Problem1.last [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 2" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Implement the function penultimate to find the next to last element of a list." ]
-                , Problem2.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString (Problem2.penultimate [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 3" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Implement the function elementAt to return the n-th element of a list. The index is 1-relative, that is, the first element is at index 1." ]
-                , Problem3.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "[ 1001, 44, 3, 789, 54, 33 ] find second(2) element in a list" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString (Problem3.elementAt [ 1001, 44, 3, 789, 54, 33 ] 2))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 4" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Elm provides the function List.length. See if you can implement it yourself." ]
-                , Problem4.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "[1, 2, 3, 4, 3, 2, 1]" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString (Problem4.countElements [ 1, 2, 3, 4, 3, 2, 1 ]))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 5" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Elm provides the function List.reverse to reverse the order of elements in a list. See if you can implement it." ]
-                , Problem5.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "[ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ]" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString (Problem5.myReverse [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ]))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 6" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Determine if a list is a palindrome, that is, the list is identical when read forward or backward." ]
-                , Problem6.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "[ 1, 3, 5, 8, 5, 3, 1 ]" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString (Problem6.isPalindrome [ 1, 3, 5, 8, 5, 3, 1 ]))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 7" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Flatten a nested lists into a single list. Because Lists in Elm are homogeneous we need to define what a nested list is." ]
-                , Problem7.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString Problem7.nl2 ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem7.flatten Problem7.nl2)
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Extra 1" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Drop items from the start of a list until an item does not satisfy criteria specified by a function." ]
-                , ProblemExtra1.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString (List.range 1 10) ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| ProblemExtra1.dropWhile ((>) 5) (List.range 1 10))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Extra 2" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Keep elements from the start of a list while they satisfy a condition." ]
-                , ProblemExtra2.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString (List.range 1 10) ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| ProblemExtra2.takeWhile ((>) 5) (List.range 1 10))
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 8" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Write a function to remove consecutive duplicates of list elements." ]
-                , Problem8.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString [ 3, 3, 4, 3, 4, 4 ] ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem8.noDupes [ 3, 3, 4, 3, 4, 4 ])
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 9" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Convert a list to a list of lists where repeated elements of the source list are packed into sublists. Elements that are not repeated should be placed in a one element sublist." ]
-                , Problem9.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ] ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem9.pack [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ])
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 10" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Run-length encode a list of list to a list of tuples. Unlike lists, tuples can mix types. Use tuples (n, e) to encode a list where n is the number of duplicates of the element e." ]
-                , Problem10.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p []
-                    [ Html.text <|
-                        Debug.toString
-                            [ [ 'a', 'a', 'a' ]
-                            , [ 'b' ]
-                            , [ 'c', 'c', 'c' ]
-                            , [ 'd', 'd', 'd', 'd' ]
-                            , [ 'e' ]
-                            , [ 'f', 'f' ]
+        (problemsConfig
+            |> List.map
+                (\problem ->
+                    Html.div []
+                        [ Html.h2 [] [ Html.text problem.headline ]
+                        , Html.div []
+                            [ Html.p [] [ Html.text problem.description ]
+                            , problem.main
                             ]
-                    ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text
-                    (Debug.toString <|
-                        Problem10.runLengths
-                            [ [ 'a', 'a', 'a' ]
-                            , [ 'b' ]
-                            , [ 'c', 'c', 'c' ]
-                            , [ 'd', 'd', 'd', 'd' ]
-                            , [ 'e' ]
-                            , [ 'f', 'f' ]
+                        , Html.div []
+                            [ Html.p [] [ Html.text "Input:" ]
+                            , Html.p [] [ Html.text problem.textInput ]
+                            , Html.p [] [ Html.text "Solution:" ]
+                            , Html.text problem.solutionInString
                             ]
-                    )
-                ]
+                        ]
+                )
+        )
+
+
+problemsConfig : List (ProblemConfig a)
+problemsConfig =
+    [ { headline = "Problem 1"
+      , description = "Write a function last that returns the last element of a list. An empty list doesn't have a last element, therefore last must return a Maybe."
+      , textInput = "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]"
+      , solutionInString = Problem1.last [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] |> Debug.toString
+      , main = Problem1.main
+      }
+    , { headline = "Problem 2"
+      , description = "Implement the function penultimate to find the next to last element of a list."
+      , textInput = "[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]"
+      , solutionInString = Problem2.penultimate [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] |> Debug.toString
+      , main = Problem2.main
+      }
+    , { headline = "Problem 3"
+      , description = "Implement the function elementAt to return the n-th element of a list. The index is 1-relative, that is, the first element is at index 1."
+      , textInput = "[ 1001, 44, 3, 789, 54, 33 ] find second(2) element in a list"
+      , solutionInString = Problem3.elementAt [ 1001, 44, 3, 789, 54, 33 ] 2 |> Debug.toString
+      , main = Problem3.main
+      }
+    , { headline = "Problem 4"
+      , description = "Elm provides the function List.length. See if you can implement it yourself."
+      , textInput = "[1, 2, 3, 4, 3, 2, 1]"
+      , solutionInString = Problem4.countElements [ 1, 2, 3, 4, 3, 2, 1 ] |> Debug.toString
+      , main = Problem4.main
+      }
+    , { headline = "Problem 5"
+      , description = "Elm provides the function List.reverse to reverse the order of elements in a list. See if you can implement it."
+      , textInput = "[ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ]"
+      , solutionInString = Problem5.myReverse [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' ] |> Debug.toString
+      , main = Problem5.main
+      }
+    , { headline = "Problem 6"
+      , description = "Determine if a list is a palindrome, that is, the list is identical when read forward or backward."
+      , textInput = "[ 1, 3, 5, 8, 5, 3, 1 ]"
+      , solutionInString = Problem6.isPalindrome [ 1, 3, 5, 8, 5, 3, 1 ] |> Debug.toString
+      , main = Problem6.main
+      }
+    , { headline = "Problem 7"
+      , description = "Flatten a nested lists into a single list. Because Lists in Elm are homogeneous we need to define what a nested list is."
+      , textInput = List.range 1 10 |> Debug.toString
+      , solutionInString = Problem7.flatten Problem7.nl2 |> Debug.toString
+      , main = Problem7.main
+      }
+    , { headline = "Extra 1"
+      , description = "Drop items from the start of a list until an item does not satisfy criteria specified by a function."
+      , textInput = List.range 1 10 |> Debug.toString
+      , solutionInString = ProblemExtra1.dropWhile ((>) 5) (List.range 1 10) |> Debug.toString
+      , main = ProblemExtra1.main
+      }
+    , { headline = "Extra 2"
+      , description = "Keep elements from the start of a list while they satisfy a condition."
+      , textInput = List.range 1 10 |> Debug.toString
+      , solutionInString = ProblemExtra2.takeWhile ((>) 5) (List.range 1 10) |> Debug.toString
+      , main = ProblemExtra2.main
+      }
+    , { headline = "Problem 8"
+      , description = "Write a function to remove consecutive duplicates of list elements."
+      , textInput = [ 3, 3, 4, 3, 4, 4 ] |> Debug.toString
+      , solutionInString = Problem8.noDupes [ 3, 3, 4, 3, 4, 4 ] |> Debug.toString
+      , main = Problem8.main
+      }
+    , { headline = "Problem 9"
+      , description = "Convert a list to a list of lists where repeated elements of the source list are packed into sublists. Elements that are not repeated should be placed in a one element sublist."
+      , textInput = [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ] |> Debug.toString
+      , solutionInString = Problem9.pack [ 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5, 6, 6 ] |> Debug.toString
+      , main = Problem9.main
+      }
+    , { headline = "Problem 10"
+      , description = "Run-length encode a list of list to a list of tuples. Unlike lists, tuples can mix types. Use tuples (n, e) to encode a list where n is the number of duplicates of the element e."
+      , textInput =
+            [ [ 'a', 'a', 'a' ]
+            , [ 'b' ]
+            , [ 'c', 'c', 'c' ]
+            , [ 'd', 'd', 'd', 'd' ]
+            , [ 'e' ]
+            , [ 'f', 'f' ]
             ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 11" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Write a function to run length encode a list, but instead of using a tuple as in problem 10, use a union data type" ]
-                , Problem11.main
+                |> Debug.toString
+      , solutionInString =
+            Problem10.runLengths
+                [ [ 'a', 'a', 'a' ]
+                , [ 'b' ]
+                , [ 'c', 'c', 'c' ]
+                , [ 'd', 'd', 'd', 'd' ]
+                , [ 'e' ]
+                , [ 'f', 'f' ]
                 ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ] ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem11.rleEncode [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ])
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 12" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Decompress the run-length encoded list generated in Problem 11." ]
-                , Problem12.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString [ Problem12.Run 4 1, Problem12.Single 2, Problem12.Run 2 5, Problem12.Single 2, Problem12.Single 1 ] ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem12.rleDecode [ Problem12.Run 4 1, Problem12.Single 2, Problem12.Run 2 5, Problem12.Single 2, Problem12.Single 1 ])
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 14" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Duplicate each element of a list." ]
-                , Problem14.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text <| Debug.toString [ 1, 2, 3, 5, 8, 8 ] ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem14.duplicate [ 1, 2, 3, 5, 8, 8 ])
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 15" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Repeat each element of a list a given number of times." ]
-                , Problem15.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "3 [ 1, 2, 3, 3 ]" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem15.repeatElements 3 [ 1, 2, 3, 3 ])
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 16" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Drop every nth element from a list." ]
-                , Problem16.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "(List.range 1 10) 3" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem16.dropNth (List.range 1 10) 3)
-                ]
-            ]
-        , Html.div []
-            [ Html.h2 [] [ Html.text "Problem 20" ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Remove the nth element from a list." ]
-                , Problem20.main
-                ]
-            , Html.div []
-                [ Html.p [] [ Html.text "Input:" ]
-                , Html.p [] [ Html.text "3 (List.range 1 10)" ]
-                , Html.p [] [ Html.text "Solution:" ]
-                , Html.text (Debug.toString <| Problem20.dropAt 3 (List.range 1 10))
-                ]
-            ]
-        ]
+                |> Debug.toString
+      , main = Problem10.main
+      }
+    , { headline = "Problem 11"
+      , description = "Write a function to run length encode a list, but instead of using a tuple as in problem 10, use a union data type"
+      , textInput = [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ] |> Debug.toString
+      , solutionInString = Problem11.rleEncode [ 1, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5, 5, 5, 5 ] |> Debug.toString
+      , main = Problem11.main
+      }
+    , { headline = "Problem 12"
+      , description = "Decompress the run-length encoded list generated in Problem 11."
+      , textInput = [ Problem12.Run 4 1, Problem12.Single 2, Problem12.Run 2 5, Problem12.Single 2, Problem12.Single 1 ] |> Debug.toString
+      , solutionInString = Problem12.rleDecode [ Problem12.Run 4 1, Problem12.Single 2, Problem12.Run 2 5, Problem12.Single 2, Problem12.Single 1 ] |> Debug.toString
+      , main = Problem12.main
+      }
+    , { headline = "Problem 14"
+      , description = "Duplicate each element of a list."
+      , textInput = [ 1, 2, 3, 5, 8, 8 ] |> Debug.toString
+      , solutionInString = Problem14.duplicate [ 1, 2, 3, 5, 8, 8 ] |> Debug.toString
+      , main = Problem14.main
+      }
+    , { headline = "Problem 15"
+      , description = "Repeat each element of a list a given number of times."
+      , textInput = "3 [ 1, 2, 3, 3 ]"
+      , solutionInString = Problem15.repeatElements 3 [ 1, 2, 3, 3 ] |> Debug.toString
+      , main = Problem15.main
+      }
+    , { headline = "Problem 16"
+      , description = "Drop every nth element from a list."
+      , textInput = "[ 1,2,3,4,5,6,7,8,9,10 ] 3"
+      , solutionInString = Problem16.dropNth (List.range 1 10) 3 |> Debug.toString
+      , main = Problem16.main
+      }
+    , { headline = "Problem 17"
+      , description = "Split a list into two lists. The length of the first part is specified by the caller."
+      , textInput = "[ 1,2,3,4,5,6,7,8,9,10 ] 3"
+      , solutionInString = Problem17.split (List.range 1 10) 3 |> Debug.toString
+      , main = Problem17.main
+      }
+    , { headline = "Problem 20"
+      , description = "Remove the nth element from a list."
+      , textInput = "3 [ 1,2,3,4,5,6,7,8,9,10 ]"
+      , solutionInString = Problem20.dropAt 3 (List.range 1 10) |> Debug.toString
+      , main = Problem20.main
+      }
+    ]
