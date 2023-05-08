@@ -11,6 +11,7 @@ import Problem14
 import Problem15
 import Problem16
 import Problem17
+import Problem18
 import Problem2
 import Problem20
 import Problem3
@@ -232,6 +233,12 @@ problemsConfig =
       , textInput = "[ 1,2,3,4,5,6,7,8,9,10 ] 3"
       , solutionInString = Problem17.split (List.range 1 10) 3 |> Debug.toString
       , main = Problem17.main
+      }
+    , { headline = "Problem 18"
+      , description = "Extract a slice from a list.\n\nGiven a list, return the elements between (inclusively) two indices. Start counting the elements with 1. Indices outside of the list bounds (i.e. negative number, or beyond the length of the list) should be clipped to the bounds of the list.\n\n"
+      , textInput = "3 7 [1,2,3,4,5,6,7,8,9,10 ]"
+      , solutionInString = Problem18.sublist 3 7 (List.range 1 10) |> Debug.toString
+      , main = Problem18.main
       }
     , { headline = "Problem 20"
       , description = "Remove the nth element from a list."
