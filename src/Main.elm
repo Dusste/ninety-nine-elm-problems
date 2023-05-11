@@ -15,6 +15,7 @@ import Problem18
 import Problem19
 import Problem2
 import Problem20
+import Problem21
 import Problem3
 import Problem4
 import Problem5
@@ -252,5 +253,11 @@ problemsConfig =
       , textInput = "3 [ 1,2,3,4,5,6,7,8,9,10 ]"
       , solutionInString = Problem20.dropAt 3 (List.range 1 10) |> Debug.toString
       , main = Problem20.main
+      }
+    , { headline = "Problem 21"
+      , description = "Insert an element at a given position into a list. Treat the first position as index 1."
+      , textInput = "6 99 [1,2,3,4,5]"
+      , solutionInString = Problem21.insertAt 6 99 (List.range 1 5) |> Debug.toString
+      , main = Problem21.main
       }
     ]
