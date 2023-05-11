@@ -12,6 +12,7 @@ import Problem15
 import Problem16
 import Problem17
 import Problem18
+import Problem19
 import Problem2
 import Problem20
 import Problem3
@@ -239,6 +240,12 @@ problemsConfig =
       , textInput = "3 7 [1,2,3,4,5,6,7,8,9,10 ]"
       , solutionInString = Problem18.sublist 3 7 (List.range 1 10) |> Debug.toString
       , main = Problem18.main
+      }
+    , { headline = "Problem 19"
+      , description = "Rotate a list n places to the left (negative values will rotate to the right). Allow rotations greater than the list length."
+      , textInput = "-1 [1,2,3,4,5]"
+      , solutionInString = Problem19.rotate -1 (List.range 1 5) |> Debug.toString
+      , main = Problem19.main
       }
     , { headline = "Problem 20"
       , description = "Remove the nth element from a list."
