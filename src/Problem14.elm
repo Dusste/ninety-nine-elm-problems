@@ -18,7 +18,7 @@ duplicate list =
 main : Html a
 main =
     if test then
-        Html.p [ style "color" "green" ] [ text "Your implementation passed all tests." ]
+        Html.p [ style "color" "lime" ] [ text "Your implementation passed all tests." ]
 
     else
         Html.p [ style "color" "red" ] [ text "Your implementation failed at least one test." ]

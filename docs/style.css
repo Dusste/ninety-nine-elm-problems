@@ -1,0 +1,25 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    background: #130d56;
+    color: #ffffff;
+    margin: 3rem 7rem;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+h1 {
+    text-align: center;
+}
+
+.problemUnit {
+    border-radius: 3px;
+    background: #e91e63;
+    padding: 20px;
+    margin-bottom: 30px;
+}

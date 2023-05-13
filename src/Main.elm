@@ -2,7 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (Html)
-import Html.Attributes exposing (href)
+import Html.Attributes as Attr
 import Problem1
 import Problem10
 import Problem11
@@ -67,7 +67,7 @@ mainHeading : Html msg
 mainHeading =
     Html.div []
         [ Html.h1 []
-            [ Html.a [ href "https://johncrane.gitbooks.io/ninety-nine-elm-problems/content/" ] [ Html.text "99 Problems solved in ELM " ]
+            [ Html.a [ Attr.href "https://johncrane.gitbooks.io/ninety-nine-elm-problems/content/" ] [ Html.text "99 Problems solved in Elm " ]
             , Html.text "by Dusan Stevanovic"
             ]
         ]
@@ -92,7 +92,7 @@ problem1Wrapper =
         (problemsConfig
             |> List.map
                 (\problem ->
-                    Html.div []
+                    Html.div [ Attr.class "problemUnit" ]
                         [ Html.h2 [] [ Html.text problem.headline ]
                         , Html.div []
                             [ Html.p [] [ Html.text problem.description ]

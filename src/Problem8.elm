@@ -25,7 +25,7 @@ main : Html a
 main =
     case test of
         0 ->
-            Html.p [ style "color" "green" ] [ text "Your implementation passed all tests." ]
+            Html.p [ style "color" "lime" ] [ text "Your implementation passed all tests." ]
 
         1 ->
             Html.p [ style "color" "orange" ] [ text "Your implementation failed one test." ]
