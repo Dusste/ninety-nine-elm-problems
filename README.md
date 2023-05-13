@@ -3,4 +3,4 @@ https://johncrane.gitbooks.io/ninety-nine-elm-problems/content/p/p01.html
 
 - Run: elm make src/Main.elm --output=docs/index.html
 - Open index.html in browser
-https://dusste.github.io/ninety-nine-elm-problems
+- https://dusste.github.io/ninety-nine-elm-problems
