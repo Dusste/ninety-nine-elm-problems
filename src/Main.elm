@@ -16,6 +16,7 @@ import Problem19
 import Problem2
 import Problem20
 import Problem21
+import Problem22
 import Problem3
 import Problem4
 import Problem5
@@ -259,5 +260,11 @@ problemsConfig =
       , textInput = "6 99 [1,2,3,4,5]"
       , solutionInString = Problem21.insertAt 6 99 (List.range 1 5) |> Debug.toString
       , main = Problem21.main
+      }
+    , { headline = "Problem 22"
+      , description = "Create a list containing all integers within a given range, inclusively, allow for reverse order"
+      , textInput = "8 4 [ 8, 7, 6, 5, 4 ]"
+      , solutionInString = Problem22.range 8 4 |> Debug.toString
+      , main = Problem22.main
       }
     ]

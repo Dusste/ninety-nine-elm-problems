@@ -7244,6 +7244,91 @@ var $author$project$Problem21$main = function () {
 					]));
 	}
 }();
+var $elm$core$Basics$ge = _Utils_ge;
+var $author$project$Problem22$rangeHelper = F3(
+	function (st, en, cnt) {
+		return _Utils_eq(st, en) ? _List_fromArray(
+			[st]) : (((_Utils_cmp(st, en) > 0) && (_Utils_cmp(cnt, en) > -1)) ? A2(
+			$elm$core$List$cons,
+			cnt,
+			A3($author$project$Problem22$rangeHelper, st, en, cnt - 1)) : (((_Utils_cmp(st, en) < 0) && (_Utils_cmp(cnt, en) < 1)) ? A2(
+			$elm$core$List$cons,
+			cnt,
+			A3($author$project$Problem22$rangeHelper, st, en, cnt + 1)) : _List_Nil));
+	});
+var $author$project$Problem22$range = F2(
+	function (start, end) {
+		return A3($author$project$Problem22$rangeHelper, start, end, start);
+	});
+var $author$project$Problem22$test = $elm$core$List$length(
+	A2(
+		$elm$core$List$filter,
+		$elm$core$Basics$eq(false),
+		_List_fromArray(
+			[
+				_Utils_eq(
+				A2($author$project$Problem22$range, 1, 5),
+				_List_fromArray(
+					[1, 2, 3, 4, 5])),
+				_Utils_eq(
+				A2($author$project$Problem22$range, 0, 5),
+				_List_fromArray(
+					[0, 1, 2, 3, 4, 5])),
+				_Utils_eq(
+				A2($author$project$Problem22$range, -1, 5),
+				_List_fromArray(
+					[-1, 0, 1, 2, 3, 4, 5])),
+				_Utils_eq(
+				A2($author$project$Problem22$range, 5, -1),
+				_List_fromArray(
+					[5, 4, 3, 2, 1, 0, -1])),
+				_Utils_eq(
+				A2($author$project$Problem22$range, 5, 5),
+				_List_fromArray(
+					[5])),
+				$elm$core$List$length(
+				A2($author$project$Problem22$range, 1, 999)) === 999
+			])));
+var $author$project$Problem22$main = function () {
+	var _v0 = $author$project$Problem22$test;
+	switch (_v0) {
+		case 0:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'lime')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation passed all tests.')
+					]));
+		case 1:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'red')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation failed one test.')
+					]));
+		default:
+			var n = _v0;
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'red')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						'Your implementation failed ' + ($elm$core$Debug$toString(n) + ' tests.'))
+					]));
+	}
+}();
 var $author$project$Problem3$test = $elm$core$List$length(
 	A2(
 		$elm$core$List$filter,
@@ -8674,6 +8759,14 @@ var $author$project$Main$problemsConfig = _List_fromArray(
 				99,
 				A2($elm$core$List$range, 1, 5))),
 		textInput: '6 99 [1,2,3,4,5]'
+	},
+		{
+		description: 'Create a list containing all integers within a given range, inclusively, allow for reverse order',
+		headline: 'Problem 22',
+		main: $author$project$Problem22$main,
+		solutionInString: $elm$core$Debug$toString(
+			A2($author$project$Problem22$range, 8, 4)),
+		textInput: '8 4 [ 8, 7, 6, 5, 4 ]'
 	}
 	]);
 var $author$project$Main$problem1Wrapper = A2(
