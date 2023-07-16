@@ -4370,7 +4370,89 @@ function _Browser_load(url)
 		}
 	}));
 }
-var $author$project$Main$initialModel = {something: ''};
+
+
+
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
+};
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+
+
+
+function _Time_now(millisToPosix)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(millisToPosix(Date.now())));
+	});
+}
+
+var _Time_setInterval = F2(function(interval, task)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		var id = setInterval(function() { _Scheduler_rawSpawn(task); }, interval);
+		return function() { clearInterval(id); };
+	});
+});
+
+function _Time_here()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(
+			A2($elm$time$Time$customZone, -(new Date().getTimezoneOffset()), _List_Nil)
+		));
+	});
+}
+
+
+function _Time_getZoneName()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		try
+		{
+			var name = $elm$time$Time$Name(Intl.DateTimeFormat().resolvedOptions().timeZone);
+		}
+		catch (e)
+		{
+			var name = $elm$time$Time$Offset(new Date().getTimezoneOffset());
+		}
+		callback(_Scheduler_succeed(name));
+	});
+}
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
@@ -5159,31 +5241,341 @@ var $elm$core$Task$perform = F2(
 			$elm$core$Task$Perform(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
+var $elm$browser$Browser$element = _Browser_element;
+var $author$project$Main$PageProblem23 = function (a) {
+	return {$: 'PageProblem23', a: a};
+};
+var $author$project$Problem23$Model = F3(
+	function (intSeed, tested, failedCount) {
+		return {failedCount: failedCount, intSeed: intSeed, tested: tested};
+	});
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$Problem23$init = function (_v0) {
+	return _Utils_Tuple2(
+		A3($author$project$Problem23$Model, 1, false, 0),
+		$elm$core$Platform$Cmd$none);
+};
+var $author$project$Main$initialModel = function (_v0) {
+	var _v1 = $author$project$Problem23$init(_Utils_Tuple0);
+	var pageModel = _v1.a;
+	var pageCmds = _v1.b;
+	return _Utils_Tuple2(
+		{
+			page: $author$project$Main$PageProblem23(pageModel)
+		},
+		$elm$core$Platform$Cmd$none);
+};
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $elm$browser$Browser$sandbox = function (impl) {
-	return _Browser_element(
-		{
-			init: function (_v0) {
-				return _Utils_Tuple2(impl.init, $elm$core$Platform$Cmd$none);
-			},
-			subscriptions: function (_v1) {
-				return $elm$core$Platform$Sub$none;
-			},
-			update: F2(
-				function (msg, model) {
-					return _Utils_Tuple2(
-						A2(impl.update, msg, model),
-						$elm$core$Platform$Cmd$none);
-				}),
-			view: impl.view
-		});
+var $author$project$Main$GotProblem23Msg = function (a) {
+	return {$: 'GotProblem23Msg', a: a};
 };
+var $elm$core$Platform$Cmd$map = _Platform_map;
+var $author$project$Problem23$NewFace = function (a) {
+	return {$: 'NewFace', a: a};
+};
+var $elm$random$Random$Generate = function (a) {
+	return {$: 'Generate', a: a};
+};
+var $elm$random$Random$Seed = F2(
+	function (a, b) {
+		return {$: 'Seed', a: a, b: b};
+	});
+var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
+var $elm$random$Random$next = function (_v0) {
+	var state0 = _v0.a;
+	var incr = _v0.b;
+	return A2($elm$random$Random$Seed, ((state0 * 1664525) + incr) >>> 0, incr);
+};
+var $elm$random$Random$initialSeed = function (x) {
+	var _v0 = $elm$random$Random$next(
+		A2($elm$random$Random$Seed, 0, 1013904223));
+	var state1 = _v0.a;
+	var incr = _v0.b;
+	var state2 = (state1 + x) >>> 0;
+	return $elm$random$Random$next(
+		A2($elm$random$Random$Seed, state2, incr));
+};
+var $elm$time$Time$Name = function (a) {
+	return {$: 'Name', a: a};
+};
+var $elm$time$Time$Offset = function (a) {
+	return {$: 'Offset', a: a};
+};
+var $elm$time$Time$Zone = F2(
+	function (a, b) {
+		return {$: 'Zone', a: a, b: b};
+	});
+var $elm$time$Time$customZone = $elm$time$Time$Zone;
+var $elm$time$Time$Posix = function (a) {
+	return {$: 'Posix', a: a};
+};
+var $elm$time$Time$millisToPosix = $elm$time$Time$Posix;
+var $elm$time$Time$now = _Time_now($elm$time$Time$millisToPosix);
+var $elm$time$Time$posixToMillis = function (_v0) {
+	var millis = _v0.a;
+	return millis;
+};
+var $elm$random$Random$init = A2(
+	$elm$core$Task$andThen,
+	function (time) {
+		return $elm$core$Task$succeed(
+			$elm$random$Random$initialSeed(
+				$elm$time$Time$posixToMillis(time)));
+	},
+	$elm$time$Time$now);
+var $elm$random$Random$step = F2(
+	function (_v0, seed) {
+		var generator = _v0.a;
+		return generator(seed);
+	});
+var $elm$random$Random$onEffects = F3(
+	function (router, commands, seed) {
+		if (!commands.b) {
+			return $elm$core$Task$succeed(seed);
+		} else {
+			var generator = commands.a.a;
+			var rest = commands.b;
+			var _v1 = A2($elm$random$Random$step, generator, seed);
+			var value = _v1.a;
+			var newSeed = _v1.b;
+			return A2(
+				$elm$core$Task$andThen,
+				function (_v2) {
+					return A3($elm$random$Random$onEffects, router, rest, newSeed);
+				},
+				A2($elm$core$Platform$sendToApp, router, value));
+		}
+	});
+var $elm$random$Random$onSelfMsg = F3(
+	function (_v0, _v1, seed) {
+		return $elm$core$Task$succeed(seed);
+	});
+var $elm$random$Random$Generator = function (a) {
+	return {$: 'Generator', a: a};
+};
+var $elm$random$Random$map = F2(
+	function (func, _v0) {
+		var genA = _v0.a;
+		return $elm$random$Random$Generator(
+			function (seed0) {
+				var _v1 = genA(seed0);
+				var a = _v1.a;
+				var seed1 = _v1.b;
+				return _Utils_Tuple2(
+					func(a),
+					seed1);
+			});
+	});
+var $elm$random$Random$cmdMap = F2(
+	function (func, _v0) {
+		var generator = _v0.a;
+		return $elm$random$Random$Generate(
+			A2($elm$random$Random$map, func, generator));
+	});
+_Platform_effectManagers['Random'] = _Platform_createManager($elm$random$Random$init, $elm$random$Random$onEffects, $elm$random$Random$onSelfMsg, $elm$random$Random$cmdMap);
+var $elm$random$Random$command = _Platform_leaf('Random');
+var $elm$random$Random$generate = F2(
+	function (tagger, generator) {
+		return $elm$random$Random$command(
+			$elm$random$Random$Generate(
+				A2($elm$random$Random$map, tagger, generator)));
+	});
+var $elm$core$Bitwise$and = _Bitwise_and;
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $elm$core$Bitwise$xor = _Bitwise_xor;
+var $elm$random$Random$peel = function (_v0) {
+	var state = _v0.a;
+	var word = (state ^ (state >>> ((state >>> 28) + 4))) * 277803737;
+	return ((word >>> 22) ^ word) >>> 0;
+};
+var $elm$random$Random$int = F2(
+	function (a, b) {
+		return $elm$random$Random$Generator(
+			function (seed0) {
+				var _v0 = (_Utils_cmp(a, b) < 0) ? _Utils_Tuple2(a, b) : _Utils_Tuple2(b, a);
+				var lo = _v0.a;
+				var hi = _v0.b;
+				var range = (hi - lo) + 1;
+				if (!((range - 1) & range)) {
+					return _Utils_Tuple2(
+						(((range - 1) & $elm$random$Random$peel(seed0)) >>> 0) + lo,
+						$elm$random$Random$next(seed0));
+				} else {
+					var threshhold = (((-range) >>> 0) % range) >>> 0;
+					var accountForBias = function (seed) {
+						accountForBias:
+						while (true) {
+							var x = $elm$random$Random$peel(seed);
+							var seedN = $elm$random$Random$next(seed);
+							if (_Utils_cmp(x, threshhold) < 0) {
+								var $temp$seed = seedN;
+								seed = $temp$seed;
+								continue accountForBias;
+							} else {
+								return _Utils_Tuple2((x % range) + lo, seedN);
+							}
+						}
+					};
+					return accountForBias(seed0);
+				}
+			});
+	});
+var $elm$random$Random$maxInt = 2147483647;
+var $elm$random$Random$minInt = -2147483648;
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $elm$core$Basics$neq = _Utils_notEqual;
+var $author$project$Problem23$randomSelect = F3(
+	function (seed, n, list) {
+		var _v0 = A2(
+			$elm$random$Random$step,
+			A2($elm$random$Random$int, 0, n),
+			seed);
+		var randomInt = _v0.a;
+		var seed1 = _v0.b;
+		return _Utils_Tuple2(_List_Nil, seed);
+	});
+var $elm$core$List$sortBy = _List_sortBy;
+var $elm$core$List$sort = function (xs) {
+	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
+};
+var $author$project$Problem23$test = function (intSeed) {
+	var seed = $elm$random$Random$initialSeed(intSeed);
+	var _v0 = A3(
+		$author$project$Problem23$randomSelect,
+		seed,
+		3,
+		A2($elm$core$List$range, 1, 1000));
+	var l2 = _v0.a;
+	var s2 = _v0.b;
+	var _v1 = A3(
+		$author$project$Problem23$randomSelect,
+		s2,
+		3,
+		A2($elm$core$List$range, 1, 1000));
+	var l3 = _v1.a;
+	var s3 = _v1.b;
+	var _v2 = A3(
+		$author$project$Problem23$randomSelect,
+		s3,
+		9,
+		A2($elm$core$List$range, 1, 9));
+	var l4 = _v2.a;
+	var s4 = _v2.b;
+	var _v3 = A3(
+		$author$project$Problem23$randomSelect,
+		s4,
+		3,
+		_List_fromArray(
+			['a', 'b']));
+	var l5 = _v3.a;
+	var s5 = _v3.b;
+	var _v4 = A3(
+		$author$project$Problem23$randomSelect,
+		s5,
+		0,
+		_List_fromArray(
+			[
+				_Utils_chr('a'),
+				_Utils_chr('b')
+			]));
+	var l6 = _v4.a;
+	var s6 = _v4.b;
+	var _v5 = A3(
+		$author$project$Problem23$randomSelect,
+		s6,
+		-1,
+		_List_fromArray(
+			[
+				_Utils_chr('a'),
+				_Utils_chr('b')
+			]));
+	var l7 = _v5.a;
+	var s7 = _v5.b;
+	var _v6 = A3($author$project$Problem23$randomSelect, s6, 1, _List_Nil);
+	var l8 = _v6.a;
+	var s8 = _v6.b;
+	var _v7 = A3(
+		$author$project$Problem23$randomSelect,
+		seed,
+		3,
+		A2($elm$core$List$range, 1, 1000));
+	var l1 = _v7.a;
+	var s1 = _v7.b;
+	return $elm$core$List$length(
+		A2(
+			$elm$core$List$filter,
+			$elm$core$Basics$eq(false),
+			_List_fromArray(
+				[
+					_Utils_eq(
+					$elm$core$List$sort(l1),
+					$elm$core$List$sort(l2)),
+					!_Utils_eq(l2, l3),
+					_Utils_eq(
+					$elm$core$List$sort(l4),
+					A2($elm$core$List$range, 1, 9)),
+					_Utils_eq(
+					$elm$core$List$sort(l5),
+					_List_fromArray(
+						['a', 'b'])),
+					_Utils_eq(l6, _List_Nil),
+					_Utils_eq(l7, _List_Nil),
+					_Utils_eq(l8, _List_Nil)
+				])));
+};
+var $author$project$Problem23$update = F2(
+	function (msg, model) {
+		if (msg.$ === 'Test') {
+			return _Utils_Tuple2(
+				model,
+				A2(
+					$elm$random$Random$generate,
+					$author$project$Problem23$NewFace,
+					A2($elm$random$Random$int, $elm$random$Random$minInt, $elm$random$Random$maxInt)));
+		} else {
+			var newSeed = msg.a;
+			return _Utils_Tuple2(
+				A3(
+					$author$project$Problem23$Model,
+					newSeed,
+					true,
+					$author$project$Problem23$test(model.intSeed)),
+				$elm$core$Platform$Cmd$none);
+		}
+	});
 var $author$project$Main$update = F2(
 	function (msg, model) {
-		return model;
+		if (msg.$ === 'NoOp') {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		} else {
+			var problem23msg = msg.a;
+			var _v1 = model.page;
+			var problem23model = _v1.a;
+			var _v2 = A2($author$project$Problem23$update, problem23msg, problem23model);
+			var fromProblemModel = _v2.a;
+			var fromProblemMsg = _v2.b;
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{
+						page: $author$project$Main$PageProblem23(fromProblemModel)
+					}),
+				A2($elm$core$Platform$Cmd$map, $author$project$Main$GotProblem23Msg, fromProblemMsg));
+		}
 	});
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$p = _VirtualDom_node('p');
@@ -5243,6 +5635,8 @@ var $author$project$Main$mainHeading = A2(
 		]));
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
+var $elm$html$Html$map = $elm$virtual_dom$VirtualDom$map;
 var $author$project$Problem12$Run = F2(
 	function (a, b) {
 		return {$: 'Run', a: a, b: b};
@@ -5250,6 +5644,28 @@ var $author$project$Problem12$Run = F2(
 var $author$project$Problem12$Single = function (a) {
 	return {$: 'Single', a: a};
 };
+var $author$project$Problem26$combinations = F2(
+	function (n, list) {
+		if (n <= 0) {
+			return _List_fromArray(
+				[_List_Nil]);
+		} else {
+			if (!list.b) {
+				return _List_Nil;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				var combinationsWithoutX = A2($author$project$Problem26$combinations, n, xs);
+				var combinationsWithX = A2(
+					$elm$core$List$map,
+					function (comb) {
+						return A2($elm$core$List$cons, x, comb);
+					},
+					A2($author$project$Problem26$combinations, n - 1, xs));
+				return _Utils_ap(combinationsWithX, combinationsWithoutX);
+			}
+		}
+	});
 var $author$project$Problem4$countElements = function (lst) {
 	if (!lst.b) {
 		return 0;
@@ -5258,7 +5674,6 @@ var $author$project$Problem4$countElements = function (lst) {
 		return 1 + $author$project$Problem4$countElements(xs);
 	}
 };
-var $elm$core$Basics$neq = _Utils_notEqual;
 var $author$project$Problem20$dropHelper = F3(
 	function (lst, num, count) {
 		if (!lst.b) {
@@ -5666,17 +6081,6 @@ var $author$project$Problem1$last = function (lst) {
 };
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
 var $author$project$Problem1$test = $elm$core$List$length(
 	A2(
 		$elm$core$List$filter,
@@ -6278,9 +6682,6 @@ var $author$project$Problem14$main = $author$project$Problem14$test ? A2(
 		[
 			$elm$html$Html$text('Your implementation failed at least one test.')
 		]));
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var $author$project$Problem15$repeatElements = F2(
 	function (count, list) {
 		if (!list.b) {
@@ -7291,6 +7692,157 @@ var $author$project$Problem22$test = $elm$core$List$length(
 			])));
 var $author$project$Problem22$main = function () {
 	var _v0 = $author$project$Problem22$test;
+	switch (_v0) {
+		case 0:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'lime')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation passed all tests.')
+					]));
+		case 1:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'red')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation failed one test.')
+					]));
+		default:
+			var n = _v0;
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'red')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						'Your implementation failed ' + ($elm$core$Debug$toString(n) + ' tests.'))
+					]));
+	}
+}();
+var $author$project$Problem26$test = $elm$core$List$length(
+	A2(
+		$elm$core$List$filter,
+		$elm$core$Basics$eq(false),
+		_List_fromArray(
+			[
+				_Utils_eq(
+				A2(
+					$author$project$Problem26$combinations,
+					2,
+					_List_fromArray(
+						[
+							_Utils_chr('a'),
+							_Utils_chr('b'),
+							_Utils_chr('c')
+						])),
+				_List_fromArray(
+					[
+						_List_fromArray(
+						[
+							_Utils_chr('a'),
+							_Utils_chr('b')
+						]),
+						_List_fromArray(
+						[
+							_Utils_chr('a'),
+							_Utils_chr('c')
+						]),
+						_List_fromArray(
+						[
+							_Utils_chr('b'),
+							_Utils_chr('c')
+						])
+					])),
+				_Utils_eq(
+				A2(
+					$author$project$Problem26$combinations,
+					2,
+					A2($elm$core$List$range, 1, 3)),
+				_List_fromArray(
+					[
+						_List_fromArray(
+						[1, 2]),
+						_List_fromArray(
+						[1, 3]),
+						_List_fromArray(
+						[2, 3])
+					])),
+				_Utils_eq(
+				A2(
+					$author$project$Problem26$combinations,
+					2,
+					A2($elm$core$List$range, 1, 4)),
+				_List_fromArray(
+					[
+						_List_fromArray(
+						[1, 2]),
+						_List_fromArray(
+						[1, 3]),
+						_List_fromArray(
+						[1, 4]),
+						_List_fromArray(
+						[2, 3]),
+						_List_fromArray(
+						[2, 4]),
+						_List_fromArray(
+						[3, 4])
+					])),
+				_Utils_eq(
+				A2(
+					$author$project$Problem26$combinations,
+					1,
+					A2($elm$core$List$range, 1, 5)),
+				_List_fromArray(
+					[
+						_List_fromArray(
+						[1]),
+						_List_fromArray(
+						[2]),
+						_List_fromArray(
+						[3]),
+						_List_fromArray(
+						[4]),
+						_List_fromArray(
+						[5])
+					])),
+				_Utils_eq(
+				A2(
+					$author$project$Problem26$combinations,
+					0,
+					A2($elm$core$List$range, 1, 10)),
+				_List_fromArray(
+					[_List_Nil])),
+				_Utils_eq(
+				A2(
+					$author$project$Problem26$combinations,
+					-1,
+					A2($elm$core$List$range, 1, 10)),
+				_List_fromArray(
+					[_List_Nil])),
+				$elm$core$List$length(
+				A2(
+					$author$project$Problem26$combinations,
+					3,
+					A2($elm$core$List$range, 1, 12))) === 220,
+				$elm$core$List$length(
+				A2(
+					$author$project$Problem26$combinations,
+					4,
+					A2($elm$core$List$range, 1, 15))) === 1365
+			])));
+var $author$project$Problem26$main = function () {
+	var _v0 = $author$project$Problem26$test;
 	switch (_v0) {
 		case 0:
 			return A2(
@@ -8767,15 +9319,201 @@ var $author$project$Main$problemsConfig = _List_fromArray(
 		solutionInString: $elm$core$Debug$toString(
 			A2($author$project$Problem22$range, 8, 4)),
 		textInput: '8 4 [ 8, 7, 6, 5, 4 ]'
+	},
+		{
+		description: 'Write a function to generate all combinations of a list.',
+		headline: 'Problem 26',
+		main: $author$project$Problem26$main,
+		solutionInString: $elm$core$Debug$toString(
+			A2(
+				$author$project$Problem26$combinations,
+				2,
+				A2($elm$core$List$range, 1, 4))),
+		textInput: '2 [1,2,3,4]'
 	}
 	]);
-var $author$project$Main$problem1Wrapper = A2(
-	$elm$html$Html$div,
-	_List_Nil,
-	A2(
-		$elm$core$List$map,
-		function (problem) {
+var $author$project$Problem23$Test = {$: 'Test'};
+var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $author$project$Problem23$viewMsg = F2(
+	function (tested, failedCount) {
+		if (tested) {
+			switch (failedCount) {
+				case 0:
+					return A2(
+						$elm$html$Html$p,
+						_List_fromArray(
+							[
+								A2($elm$html$Html$Attributes$style, 'color', 'lime')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Your implementation passed all tests.')
+							]));
+				case 1:
+					return A2(
+						$elm$html$Html$p,
+						_List_fromArray(
+							[
+								A2($elm$html$Html$Attributes$style, 'color', 'red')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Your implementation failed one test.')
+							]));
+				default:
+					var x = failedCount;
+					return A2(
+						$elm$html$Html$p,
+						_List_fromArray(
+							[
+								A2($elm$html$Html$Attributes$style, 'color', 'red')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text(
+								'Your implementation failed ' + ($elm$core$String$fromInt(x) + ' tests.'))
+							]));
+			}
+		} else {
 			return A2(
+				$elm$html$Html$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Click the test button below')
+					]));
+		}
+	});
+var $author$project$Problem23$view = function (model) {
+	var stringFromList = $elm$core$Debug$toString(
+		A3(
+			$author$project$Problem23$randomSelect,
+			$elm$random$Random$initialSeed(model.intSeed),
+			1,
+			A2($elm$core$List$range, 1, 6)).a);
+	return A2(
+		$elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2($author$project$Problem23$viewMsg, model.tested, model.failedCount),
+				A2(
+				$elm$html$Html$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						'Seed value: ' + $elm$core$String$fromInt(model.intSeed))
+					])),
+				A2(
+				$elm$html$Html$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your die roll is ' + stringFromList)
+					])),
+				A2(
+				$elm$html$Html$button,
+				_List_fromArray(
+					[
+						$elm$html$Html$Events$onClick($author$project$Problem23$Test)
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Test')
+					]))
+			]));
+};
+var $author$project$Main$problem1Wrapper = function (model) {
+	return A2(
+		$elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				A2(
+					$elm$core$List$map,
+					function (problem) {
+						return A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('problemUnit')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h2,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$elm$html$Html$text(problem.headline)
+										])),
+									A2(
+									$elm$html$Html$div,
+									_List_Nil,
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text(problem.description)
+												])),
+											problem.main
+										])),
+									A2(
+									$elm$html$Html$div,
+									_List_Nil,
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Input:')
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text(problem.textInput)
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Solution:')
+												])),
+											$elm$html$Html$text(problem.solutionInString)
+										]))
+								]));
+					},
+					$author$project$Main$problemsConfig)),
+				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
@@ -8788,7 +9526,7 @@ var $author$project$Main$problem1Wrapper = A2(
 						_List_Nil,
 						_List_fromArray(
 							[
-								$elm$html$Html$text(problem.headline)
+								$elm$html$Html$text('Problem 23')
 							])),
 						A2(
 						$elm$html$Html$div,
@@ -8800,49 +9538,45 @@ var $author$project$Main$problem1Wrapper = A2(
 								_List_Nil,
 								_List_fromArray(
 									[
-										$elm$html$Html$text(problem.description)
+										$elm$html$Html$text('Extract a given number of randomly selected elements from a list.')
 									])),
-								problem.main
-							])),
-						A2(
-						$elm$html$Html$div,
-						_List_Nil,
-						_List_fromArray(
-							[
 								A2(
-								$elm$html$Html$p,
+								$elm$html$Html$div,
 								_List_Nil,
 								_List_fromArray(
 									[
-										$elm$html$Html$text('Input:')
-									])),
-								A2(
-								$elm$html$Html$p,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$html$Html$text(problem.textInput)
-									])),
-								A2(
-								$elm$html$Html$p,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Solution:')
-									])),
-								$elm$html$Html$text(problem.solutionInString)
+										function () {
+										var _v0 = model.page;
+										var problemModel23 = _v0.a;
+										return A2(
+											$elm$html$Html$map,
+											$author$project$Main$GotProblem23Msg,
+											$author$project$Problem23$view(problemModel23));
+									}()
+									]))
 							]))
-					]));
-		},
-		$author$project$Main$problemsConfig));
-var $author$project$Main$view = function (_v0) {
+					]))
+			]));
+};
+var $author$project$Main$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
 		_List_fromArray(
-			[$author$project$Main$mainHeading, $author$project$Main$infoSection, $author$project$Main$problem1Wrapper]));
+			[
+				$author$project$Main$mainHeading,
+				$author$project$Main$infoSection,
+				$author$project$Main$problem1Wrapper(model)
+			]));
 };
-var $author$project$Main$main = $elm$browser$Browser$sandbox(
-	{init: $author$project$Main$initialModel, update: $author$project$Main$update, view: $author$project$Main$view});
+var $author$project$Main$main = $elm$browser$Browser$element(
+	{
+		init: $author$project$Main$initialModel,
+		subscriptions: function (_v0) {
+			return $elm$core$Platform$Sub$none;
+		},
+		update: $author$project$Main$update,
+		view: $author$project$Main$view
+	});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));

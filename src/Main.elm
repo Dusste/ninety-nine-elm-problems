@@ -17,6 +17,8 @@ import Problem2
 import Problem20
 import Problem21
 import Problem22
+import Problem23
+import Problem26
 import Problem3
 import Problem4
 import Problem5
@@ -26,41 +28,59 @@ import Problem8
 import Problem9
 import ProblemExtra1
 import ProblemExtra2
+import Random exposing (Seed)
+
+
+type alias Model =
+    { page : Page
+    }
 
 
 main : Program () Model Msg
 main =
-    Browser.sandbox { init = initialModel, update = update, view = view }
+    Browser.element { init = initialModel, update = update, view = view, subscriptions = \_ -> Sub.none }
 
 
-initialModel : Model
-initialModel =
-    { something = ""
-    }
+initialModel : () -> ( Model, Cmd Msg )
+initialModel _ =
+    let
+        ( pageModel, pageCmds ) =
+            Problem23.init ()
+    in
+    ( { page = PageProblem23 pageModel }, Cmd.none )
+
+
+type Page
+    = PageProblem23 Problem23.Model
 
 
 type Msg
     = NoOp
+    | GotProblem23Msg Problem23.Msg
 
 
-type alias Model =
-    { something : String
-    }
-
-
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
-            model
+            ( model, Cmd.none )
+
+        GotProblem23Msg problem23msg ->
+            case model.page of
+                PageProblem23 problem23model ->
+                    let
+                        ( fromProblemModel, fromProblemMsg ) =
+                            Problem23.update problem23msg problem23model
+                    in
+                    ( { model | page = PageProblem23 fromProblemModel }, Cmd.map GotProblem23Msg fromProblemMsg )
 
 
-view : Model -> Html msg
-view _ =
+view : Model -> Html Msg
+view model =
     Html.div []
         [ mainHeading
         , infoSection
-        , problem1Wrapper
+        , problem1Wrapper model
         ]
 
 
@@ -87,27 +107,41 @@ type alias ProblemConfig a =
     { headline : String, description : String, textInput : String, solutionInString : String, main : Html a }
 
 
-problem1Wrapper : Html msg
-problem1Wrapper =
+problem1Wrapper : Model -> Html Msg
+problem1Wrapper model =
     Html.div []
-        (problemsConfig
-            |> List.map
-                (\problem ->
-                    Html.div [ Attr.class "problemUnit" ]
-                        [ Html.h2 [] [ Html.text problem.headline ]
-                        , Html.div []
-                            [ Html.p [] [ Html.text problem.description ]
-                            , problem.main
+        [ Html.div []
+            (problemsConfig
+                |> List.map
+                    (\problem ->
+                        Html.div [ Attr.class "problemUnit" ]
+                            [ Html.h2 [] [ Html.text problem.headline ]
+                            , Html.div []
+                                [ Html.p [] [ Html.text problem.description ]
+                                , problem.main
+                                ]
+                            , Html.div []
+                                [ Html.p [] [ Html.text "Input:" ]
+                                , Html.p [] [ Html.text problem.textInput ]
+                                , Html.p [] [ Html.text "Solution:" ]
+                                , Html.text problem.solutionInString
+                                ]
                             ]
-                        , Html.div []
-                            [ Html.p [] [ Html.text "Input:" ]
-                            , Html.p [] [ Html.text problem.textInput ]
-                            , Html.p [] [ Html.text "Solution:" ]
-                            , Html.text problem.solutionInString
-                            ]
-                        ]
-                )
-        )
+                    )
+            )
+        , Html.div [ Attr.class "problemUnit" ]
+            [ Html.h2 [] [ Html.text "Problem 23" ]
+            , Html.div []
+                [ Html.p [] [ Html.text "Extract a given number of randomly selected elements from a list." ]
+                , Html.div []
+                    [ case model.page of
+                        PageProblem23 problemModel23 ->
+                            Problem23.view problemModel23
+                                |> Html.map GotProblem23Msg
+                    ]
+                ]
+            ]
+        ]
 
 
 problemsConfig : List (ProblemConfig a)
@@ -266,5 +300,11 @@ problemsConfig =
       , textInput = "8 4 [ 8, 7, 6, 5, 4 ]"
       , solutionInString = Problem22.range 8 4 |> Debug.toString
       , main = Problem22.main
+      }
+    , { headline = "Problem 26"
+      , description = "Write a function to generate all combinations of a list."
+      , textInput = "2 [1,2,3,4]"
+      , solutionInString = Problem26.combinations 2 (List.range 1 4) |> Debug.toString
+      , main = Problem26.main
       }
     ]
