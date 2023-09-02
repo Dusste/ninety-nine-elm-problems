@@ -19,6 +19,7 @@ import Problem21
 import Problem22
 import Problem23
 import Problem26
+import Problem28a
 import Problem3
 import Problem4
 import Problem5
@@ -306,5 +307,11 @@ problemsConfig =
       , textInput = "2 [1,2,3,4]"
       , solutionInString = Problem26.combinations 2 (List.range 1 4) |> Debug.toString
       , main = Problem26.main
+      }
+    , { headline = "Problem 28a"
+      , description = "Sort a list of list by the length of the lists. The order of sublists of the same size is undefined."
+      , textInput = "[[1],[2],[3,4,5],[6,7,8],[2,3],[4,5],[6,7,8,9,0]]"
+      , solutionInString = Problem28a.sortByListLengths [ [ 1 ], [ 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ], [ 2, 3 ], [ 4, 5 ], [ 6, 7, 8, 9, 0 ] ] |> List.map List.length |> Debug.toString
+      , main = Problem28a.main
       }
     ]

@@ -7881,6 +7881,219 @@ var $author$project$Problem26$main = function () {
 					]));
 	}
 }();
+var $author$project$Problem28a$sortByListLengths = function (xs) {
+	if (!xs.b) {
+		return _List_Nil;
+	} else {
+		if (!xs.b.b) {
+			var oneList = xs.a;
+			return _List_fromArray(
+				[oneList]);
+		} else {
+			var firstList = xs.a;
+			var _v1 = xs.b;
+			var secondList = _v1.a;
+			var restLists = _v1.b;
+			if (_Utils_cmp(
+				$elm$core$List$length(firstList),
+				$elm$core$List$length(secondList)) < 0) {
+				return A2(
+					$elm$core$List$cons,
+					firstList,
+					$author$project$Problem28a$sortByListLengths(
+						A2($elm$core$List$cons, secondList, restLists)));
+			} else {
+				var _v2 = A2(
+					$elm$core$List$cons,
+					secondList,
+					$author$project$Problem28a$sortByListLengths(
+						_Utils_ap(
+							restLists,
+							_List_fromArray(
+								[firstList]))));
+				if (!_v2.b) {
+					return _List_Nil;
+				} else {
+					if (!_v2.b.b) {
+						var oneList = _v2.a;
+						return _List_fromArray(
+							[oneList]);
+					} else {
+						var x = _v2.a;
+						var _v3 = _v2.b;
+						var y = _v3.a;
+						var rest = _v3.b;
+						return (_Utils_cmp(
+							$elm$core$List$length(x),
+							$elm$core$List$length(y)) < 0) ? A2(
+							$elm$core$List$cons,
+							x,
+							$author$project$Problem28a$sortByListLengths(
+								A2($elm$core$List$cons, y, rest))) : A2(
+							$elm$core$List$cons,
+							y,
+							$author$project$Problem28a$sortByListLengths(
+								_Utils_ap(
+									rest,
+									_List_fromArray(
+										[x]))));
+					}
+				}
+			}
+		}
+	}
+};
+var $author$project$Problem28a$test = $elm$core$List$length(
+	A2(
+		$elm$core$List$filter,
+		$elm$core$Basics$eq(false),
+		_List_fromArray(
+			[
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28a$sortByListLengths(
+						_List_fromArray(
+							[
+								_List_Nil,
+								_List_fromArray(
+								[1]),
+								A2($elm$core$List$range, 1, 2),
+								A2($elm$core$List$range, 1, 3),
+								A2($elm$core$List$range, 1, 4),
+								A2($elm$core$List$range, 1, 5)
+							]))),
+				_List_fromArray(
+					[0, 1, 2, 3, 4, 5])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28a$sortByListLengths(
+						_List_fromArray(
+							[_List_Nil]))),
+				_List_fromArray(
+					[0])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28a$sortByListLengths(
+						_List_fromArray(
+							[
+								_List_Nil,
+								_List_fromArray(
+								[1]),
+								A2($elm$core$List$range, 1, 100000),
+								A2($elm$core$List$range, 1, 4),
+								A2($elm$core$List$range, 1, 3),
+								A2($elm$core$List$range, 1, 2)
+							]))),
+				_List_fromArray(
+					[0, 1, 2, 3, 4, 100000])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28a$sortByListLengths(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								[14]),
+								_List_fromArray(
+								[15]),
+								_List_Nil,
+								_List_fromArray(
+								[1]),
+								_List_fromArray(
+								[12]),
+								_List_fromArray(
+								[13])
+							]))),
+				_List_fromArray(
+					[0, 1, 1, 1, 1, 1])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28a$sortByListLengths(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								['a', 'b', 'c']),
+								_List_fromArray(
+								['a', 'b']),
+								_List_fromArray(
+								['a'])
+							]))),
+				_List_fromArray(
+					[1, 2, 3])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28a$sortByListLengths(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								[1]),
+								_List_fromArray(
+								[2]),
+								_List_fromArray(
+								[3, 4, 5]),
+								_List_fromArray(
+								[6, 7, 8]),
+								_List_fromArray(
+								[2, 3]),
+								_List_fromArray(
+								[4, 5]),
+								_List_fromArray(
+								[6, 7, 8, 9, 0])
+							]))),
+				_List_fromArray(
+					[1, 1, 2, 2, 3, 3, 5]))
+			])));
+var $author$project$Problem28a$main = function () {
+	var _v0 = $author$project$Problem28a$test;
+	switch (_v0) {
+		case 0:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'lime')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation passed all tests.')
+					]));
+		case 1:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'orange')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation failed one test.')
+					]));
+		default:
+			var n = _v0;
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'red')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						'Your implementation failed ' + ($elm$core$Debug$toString(n) + ' tests.'))
+					]));
+	}
+}();
 var $author$project$Problem3$test = $elm$core$List$length(
 	A2(
 		$elm$core$List$filter,
@@ -9330,6 +9543,34 @@ var $author$project$Main$problemsConfig = _List_fromArray(
 				2,
 				A2($elm$core$List$range, 1, 4))),
 		textInput: '2 [1,2,3,4]'
+	},
+		{
+		description: 'Sort a list of list by the length of the lists. The order of sublists of the same size is undefined.',
+		headline: 'Problem 28a',
+		main: $author$project$Problem28a$main,
+		solutionInString: $elm$core$Debug$toString(
+			A2(
+				$elm$core$List$map,
+				$elm$core$List$length,
+				$author$project$Problem28a$sortByListLengths(
+					_List_fromArray(
+						[
+							_List_fromArray(
+							[1]),
+							_List_fromArray(
+							[2]),
+							_List_fromArray(
+							[3, 4, 5]),
+							_List_fromArray(
+							[6, 7, 8]),
+							_List_fromArray(
+							[2, 3]),
+							_List_fromArray(
+							[4, 5]),
+							_List_fromArray(
+							[6, 7, 8, 9, 0])
+						])))),
+		textInput: '[[1],[2],[3,4,5],[6,7,8],[2,3],[4,5],[6,7,8,9,0]]'
 	}
 	]);
 var $author$project$Problem23$Test = {$: 'Test'};
