@@ -8094,6 +8094,143 @@ var $author$project$Problem28a$main = function () {
 					]));
 	}
 }();
+var $elm_community$list_extra$List$Extra$groupWhile = F2(
+	function (isSameGroup, items) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					if (!acc.b) {
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(x, _List_Nil)
+							]);
+					} else {
+						var _v1 = acc.a;
+						var y = _v1.a;
+						var restOfGroup = _v1.b;
+						var groups = acc.b;
+						return A2(isSameGroup, x, y) ? A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								x,
+								A2($elm$core$List$cons, y, restOfGroup)),
+							groups) : A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(x, _List_Nil),
+							acc);
+					}
+				}),
+			_List_Nil,
+			items);
+	});
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $author$project$Problem28b$sortByLengthFrequency = function (lst) {
+	return A2(
+		$elm$core$List$concatMap,
+		function (l) {
+			return l;
+		},
+		A2(
+			$elm$core$List$map,
+			$elm$core$Tuple$second,
+			A2(
+				$elm$core$List$sortBy,
+				function (_v1) {
+					var i = _v1.a;
+					return i;
+				},
+				A2(
+					$elm$core$List$map,
+					function (_v0) {
+						var l1 = _v0.a;
+						var l2 = _v0.b;
+						return _Utils_Tuple2(
+							$elm$core$List$length(
+								A2($elm$core$List$cons, l1, l2)),
+							A2($elm$core$List$cons, l1, l2));
+					},
+					A2(
+						$elm_community$list_extra$List$Extra$groupWhile,
+						F2(
+							function (a, b) {
+								return _Utils_eq(
+									$elm$core$List$length(a),
+									$elm$core$List$length(b));
+							}),
+						lst)))));
+};
+var $author$project$Problem28b$test = $elm$core$List$length(
+	A2(
+		$elm$core$List$filter,
+		$elm$core$Basics$eq(false),
+		_List_fromArray(
+			[
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28b$sortByLengthFrequency(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								[1]),
+								_List_fromArray(
+								[2]),
+								_List_fromArray(
+								[3]),
+								_List_fromArray(
+								[6, 7, 8]),
+								_List_fromArray(
+								[2, 34, 5]),
+								_List_Nil
+							]))),
+				_List_fromArray(
+					[0, 3, 3, 1, 1, 1]))
+			])));
+var $author$project$Problem28b$main = function () {
+	var _v0 = $author$project$Problem28b$test;
+	switch (_v0) {
+		case 0:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'lime')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation passed all tests.')
+					]));
+		case 1:
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'orange')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Your implementation failed one test.')
+					]));
+		default:
+			var n = _v0;
+			return A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'color', 'red')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						'Your implementation failed ' + ($elm$core$Debug$toString(n) + ' tests.'))
+					]));
+	}
+}();
 var $author$project$Problem3$test = $elm$core$List$length(
 	A2(
 		$elm$core$List$filter,
@@ -9571,6 +9708,31 @@ var $author$project$Main$problemsConfig = _List_fromArray(
 							[6, 7, 8, 9, 0])
 						])))),
 		textInput: '[[1],[2],[3,4,5],[6,7,8],[2,3],[4,5],[6,7,8,9,0]]'
+	},
+		{
+		description: 'Sort a list according to the frequency of the sublist length.',
+		headline: 'Problem 28b',
+		main: $author$project$Problem28b$main,
+		solutionInString: $elm$core$Debug$toString(
+			A2(
+				$elm$core$List$map,
+				$elm$core$List$length,
+				$author$project$Problem28b$sortByLengthFrequency(
+					_List_fromArray(
+						[
+							_List_fromArray(
+							[1]),
+							_List_fromArray(
+							[2]),
+							_List_fromArray(
+							[3]),
+							_List_fromArray(
+							[6, 7, 8]),
+							_List_fromArray(
+							[2, 34, 5]),
+							_List_Nil
+						])))),
+		textInput: ' [[1],[2],[3],[6,7,8],[2,34,5],[]]'
 	}
 	]);
 var $author$project$Problem23$Test = {$: 'Test'};

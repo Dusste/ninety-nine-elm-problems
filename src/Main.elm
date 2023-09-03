@@ -20,6 +20,7 @@ import Problem22
 import Problem23
 import Problem26
 import Problem28a
+import Problem28b
 import Problem3
 import Problem4
 import Problem5
@@ -313,5 +314,11 @@ problemsConfig =
       , textInput = "[[1],[2],[3,4,5],[6,7,8],[2,3],[4,5],[6,7,8,9,0]]"
       , solutionInString = Problem28a.sortByListLengths [ [ 1 ], [ 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ], [ 2, 3 ], [ 4, 5 ], [ 6, 7, 8, 9, 0 ] ] |> List.map List.length |> Debug.toString
       , main = Problem28a.main
+      }
+    , { headline = "Problem 28b"
+      , description = "Sort a list according to the frequency of the sublist length."
+      , textInput = " [[1],[2],[3],[6,7,8],[2,34,5],[]]"
+      , solutionInString = Problem28b.sortByLengthFrequency [ [ 1 ], [ 2 ], [ 3 ], [ 6, 7, 8 ], [ 2, 34, 5 ], [] ] |> List.map List.length |> Debug.toString
+      , main = Problem28b.main
       }
     ]
