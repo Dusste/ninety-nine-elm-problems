@@ -8124,35 +8124,33 @@ var $elm_community$list_extra$List$Extra$groupWhile = F2(
 			_List_Nil,
 			items);
 	});
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
+var $elm$core$Debug$log = _Debug_log;
 var $author$project$Problem28b$sortByLengthFrequency = function (lst) {
 	return A2(
 		$elm$core$List$concatMap,
-		function (l) {
-			return l;
+		function (_v1) {
+			var list = _v1.b;
+			return list;
 		},
 		A2(
-			$elm$core$List$map,
-			$elm$core$Tuple$second,
+			$elm$core$List$sortBy,
+			$elm$core$Tuple$first,
 			A2(
-				$elm$core$List$sortBy,
-				function (_v1) {
-					var i = _v1.a;
-					return i;
+				$elm$core$List$map,
+				function (_v0) {
+					var l1 = _v0.a;
+					var l2 = _v0.b;
+					return ($elm$core$List$isEmpty(l1) && $elm$core$List$isEmpty(l2)) ? _Utils_Tuple2(
+						0,
+						_List_fromArray(
+							[_List_Nil])) : _Utils_Tuple2(
+						$elm$core$List$length(
+							A2($elm$core$List$cons, l1, l2)),
+						A2($elm$core$List$cons, l1, l2));
 				},
 				A2(
-					$elm$core$List$map,
-					function (_v0) {
-						var l1 = _v0.a;
-						var l2 = _v0.b;
-						return _Utils_Tuple2(
-							$elm$core$List$length(
-								A2($elm$core$List$cons, l1, l2)),
-							A2($elm$core$List$cons, l1, l2));
-					},
+					$elm$core$Debug$log,
+					'dusan',
 					A2(
 						$elm_community$list_extra$List$Extra$groupWhile,
 						F2(
@@ -8161,7 +8159,7 @@ var $author$project$Problem28b$sortByLengthFrequency = function (lst) {
 									$elm$core$List$length(a),
 									$elm$core$List$length(b));
 							}),
-						lst)))));
+						A2($elm$core$List$sortBy, $elm$core$List$length, lst))))));
 };
 var $author$project$Problem28b$test = $elm$core$List$length(
 	A2(
@@ -8177,7 +8175,13 @@ var $author$project$Problem28b$test = $elm$core$List$length(
 						_List_fromArray(
 							[
 								_List_fromArray(
+								[1, 2, 3, 4]),
+								_List_fromArray(
+								[4, 7]),
+								_List_fromArray(
 								[1]),
+								_List_fromArray(
+								[4, 7]),
 								_List_fromArray(
 								[2]),
 								_List_fromArray(
@@ -8185,11 +8189,127 @@ var $author$project$Problem28b$test = $elm$core$List$length(
 								_List_fromArray(
 								[6, 7, 8]),
 								_List_fromArray(
+								[9]),
+								_List_fromArray(
 								[2, 34, 5]),
-								_List_Nil
+								_List_fromArray(
+								[4, 7]),
+								_List_Nil,
+								_List_fromArray(
+								[4, 7]),
+								_List_fromArray(
+								[1, 2, 3, 4, 5])
 							]))),
 				_List_fromArray(
-					[0, 3, 3, 1, 1, 1]))
+					[0, 4, 5, 3, 3, 1, 1, 1, 1, 2, 2, 2, 2])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28b$sortByLengthFrequency(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								[1, 2, 3, 4]),
+								_List_fromArray(
+								[4, 7]),
+								_List_fromArray(
+								[1, 2, 3, 4]),
+								_List_fromArray(
+								[1, 2, 3, 4]),
+								_List_fromArray(
+								[1]),
+								_List_fromArray(
+								[4, 7]),
+								_List_fromArray(
+								[2]),
+								_List_fromArray(
+								[5, 6, 7, 8]),
+								_List_fromArray(
+								[3]),
+								_List_fromArray(
+								[6, 7, 8]),
+								_List_fromArray(
+								[9]),
+								_List_fromArray(
+								[2, 34, 5]),
+								_List_Nil,
+								_List_fromArray(
+								[1, 2, 3, 4])
+							]))),
+				_List_fromArray(
+					[0, 2, 2, 3, 3, 1, 1, 1, 1, 4, 4, 4, 4, 4])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28b$sortByLengthFrequency(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								[1]),
+								_List_fromArray(
+								[2]),
+								_List_fromArray(
+								[6, 7, 8]),
+								_List_fromArray(
+								[9]),
+								_List_fromArray(
+								[2, 34, 5]),
+								_List_Nil,
+								_List_fromArray(
+								[3])
+							]))),
+				_List_fromArray(
+					[0, 3, 3, 1, 1, 1, 1])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28b$sortByLengthFrequency(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								[1]),
+								_List_fromArray(
+								[2]),
+								_List_fromArray(
+								[3]),
+								_List_fromArray(
+								[6]),
+								_List_fromArray(
+								[2]),
+								A2($elm$core$List$range, 1, 100000)
+							]))),
+				_List_fromArray(
+					[100000, 1, 1, 1, 1, 1])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28b$sortByLengthFrequency(
+						_List_fromArray(
+							[
+								_List_fromArray(
+								[1, 2, 3]),
+								_List_fromArray(
+								[6, 7, 8]),
+								_List_fromArray(
+								[0]),
+								_List_fromArray(
+								[2, 3, 5])
+							]))),
+				_List_fromArray(
+					[1, 3, 3, 3])),
+				_Utils_eq(
+				A2(
+					$elm$core$List$map,
+					$elm$core$List$length,
+					$author$project$Problem28b$sortByLengthFrequency(
+						_List_fromArray(
+							[_List_Nil]))),
+				_List_fromArray(
+					[0]))
 			])));
 var $author$project$Problem28b$main = function () {
 	var _v0 = $author$project$Problem28b$test;
@@ -9710,7 +9830,7 @@ var $author$project$Main$problemsConfig = _List_fromArray(
 		textInput: '[[1],[2],[3,4,5],[6,7,8],[2,3],[4,5],[6,7,8,9,0]]'
 	},
 		{
-		description: 'Sort a list according to the frequency of the sublist length.',
+		description: 'Sort a list according to the frequency of the sublist length. Place lists with rare lengths first, those with more frequent lengths come later. If the frequency of two or more sublists are equal the any order is acceptable.',
 		headline: 'Problem 28b',
 		main: $author$project$Problem28b$main,
 		solutionInString: $elm$core$Debug$toString(

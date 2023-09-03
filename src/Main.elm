@@ -316,7 +316,7 @@ problemsConfig =
       , main = Problem28a.main
       }
     , { headline = "Problem 28b"
-      , description = "Sort a list according to the frequency of the sublist length."
+      , description = "Sort a list according to the frequency of the sublist length. Place lists with rare lengths first, those with more frequent lengths come later. If the frequency of two or more sublists are equal the any order is acceptable."
       , textInput = " [[1],[2],[3],[6,7,8],[2,34,5],[]]"
       , solutionInString = Problem28b.sortByLengthFrequency [ [ 1 ], [ 2 ], [ 3 ], [ 6, 7, 8 ], [ 2, 34, 5 ], [] ] |> List.map List.length |> Debug.toString
       , main = Problem28b.main
